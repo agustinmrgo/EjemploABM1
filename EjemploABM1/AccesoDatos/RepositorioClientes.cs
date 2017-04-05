@@ -17,6 +17,7 @@ namespace EjemploABM1.AccesoDatos
             //conn.ConnectionString = @"Server=AGUSTIN-PC\SQLEXPRESS;Database=EjemploABM;Trusted_Connection=true;";
             var com = new SqlCommand();
             com.Connection = conn;
+
             return com;
         }
 
