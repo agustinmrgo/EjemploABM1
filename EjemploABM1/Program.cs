@@ -11,10 +11,36 @@ namespace EjemploABM1
     {
         static void Main(string[] args)
             {
-            AdministracionProductos menuP = new AdministracionProductos();
-            AdministracionClientes menuC = new AdministracionClientes();
-            menuC.menuCliente();
-            menuP.menuProducto();
+
+            string opcion;
+
+            do
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("\n##############\nElija un menu:\n##############\n");
+                Console.WriteLine("1. Administrar clientes");
+                Console.WriteLine("2. Administrar productos");
+                Console.WriteLine("3. Salir");
+                Console.Write("Ingrese la opción: ");
+                opcion = Console.ReadLine();
+                Console.WriteLine("");
+                Console.ResetColor();
+
+                switch (opcion)
+                {
+                    case "1":
+                        AdministracionClientes menuC = new AdministracionClientes();
+                        menuC.menuCliente();
+                        break;
+                    case "2":
+                        AdministracionProductos menuP = new AdministracionProductos();
+                        menuP.menuProducto();
+                        break;
+                    default:
+                        break;
+                }
+
+            } while (opcion!="3");
         }
     }
 }

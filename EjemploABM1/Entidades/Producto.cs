@@ -4,22 +4,22 @@ namespace EjemploABM1.Entidades
 {
     class Producto
     {
-        private string nomP { get; set; }
-        private string marcaP { get; set; };
-        private decimal precioP { get; set; };
+        public string NomP { get; set; }
+        public string MarcaP { get; set; }
+        public decimal PrecioP { get; set; }
 
         public Producto(string nomP, string marcaP, decimal precioP)
         {
-            this.nomP = nomP;
-            this.marcaP = marcaP;
-            this.precioP = precioP;
+            this.NomP = nomP;
+            this.MarcaP = marcaP;
+            this.PrecioP = precioP;
         }
 
         public Producto()
         {
-            this.nomP = null;
-            this.marcaP = null;
-            this.precioP = 0;
+            this.NomP = null;
+            this.MarcaP = null;
+            this.PrecioP = 0;
         }
     }
 }

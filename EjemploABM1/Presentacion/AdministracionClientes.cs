@@ -18,9 +18,9 @@ namespace EjemploABM1.Presentacion
                 Console.WriteLine("===================================");
                 Console.WriteLine("");
                 Console.WriteLine("1 - Agregar clientes");
-                Console.WriteLine("2 - Borrar un cliente");
-                Console.WriteLine("3 - Modificar un cliente");
-                Console.WriteLine("4 - Mostrar los clientes guardados");
+                Console.WriteLine("2 - Borrar cliente");
+                Console.WriteLine("3 - Modificar cliente");
+                Console.WriteLine("4 - Mostrar clientes guardados");
                 Console.WriteLine("5 - Buscar");
                 Console.WriteLine("6 - ObtenerMayor");
                 Console.WriteLine("7 - Salir");
