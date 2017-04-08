@@ -12,7 +12,7 @@ namespace EjemploABM1.Presentacion
             repo.Guardar(c);
         }
 
-        public bool BorrarCliente(string Nombre, string Apellido)
+        public bool BorrarCliente(string Apellido, string Nombre)
         {
             int encontrados = repo.Buscar(Apellido, Nombre).Count;
             if (encontrados != 0)
@@ -45,9 +45,9 @@ namespace EjemploABM1.Presentacion
             return repo.MostrarClientes();
         }
 
-        public List<string> MostrarClientes(string apellido, string nombre)
+        public List<string> BuscarClientesPorNombre(string apellido, string nombre)
         {
-            return repo.MostrarClientes(apellido,nombre);
+            return repo.BuscarClientesPorNombre(apellido,nombre);
         }
 
         public int ObtenerMayor()

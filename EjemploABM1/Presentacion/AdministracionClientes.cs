@@ -13,15 +13,15 @@ namespace EjemploABM1.Presentacion
             do
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("===================================");
-                Console.WriteLine("             MENU CLIENTES");
-                Console.WriteLine("===================================");
+                Console.WriteLine("================================");
+                Console.WriteLine("          MENU CLIENTES");
+                Console.WriteLine("================================");
                 Console.WriteLine("");
                 Console.WriteLine("1 - Agregar clientes");
                 Console.WriteLine("2 - Borrar cliente");
                 Console.WriteLine("3 - Modificar cliente");
                 Console.WriteLine("4 - Mostrar clientes guardados");
-                Console.WriteLine("5 - Buscar");
+                Console.WriteLine("5 - Buscar clientes por nombre");
                 Console.WriteLine("6 - ObtenerMayor");
                 Console.WriteLine("7 - Salir");
 
@@ -55,32 +55,32 @@ namespace EjemploABM1.Presentacion
                         Console.Write("Ingrese el Nombre del Cliente que quiere borrar: ");
                         nomB = Console.ReadLine();
                         if (gestorClientes.BorrarCliente(apeB, nomB))
+                        {
                             Console.Write("Cliente borrado correctamente");
+                        }
                         else
+                        {
                             Console.Write("No se ha podido borrar el Cliente");
+                        }
                         Console.WriteLine("");
                         break;
 
                     case "3":
-                        String apeV;
-                        String nomV;
-                        String apeN;
-                        String nomN;
-                        int edadN;
                         Console.WriteLine("");
                         Console.Write("Ingrese el Apellido del Cliente que quiere modificar: ");
-                        apeV = Console.ReadLine();
+                        string apeV = Console.ReadLine();
                         Console.Write("Ingrese el Nombre del Cliente que quiere modificar: ");
-                        nomV = Console.ReadLine();
+                        string nomV = Console.ReadLine();
                         if (gestorClientes.Buscar(apeV, nomV))
                         {
-                            Console.Write("Ingrese el nuevo Apellido: ");
-                            apeN = Console.ReadLine();
-                            Console.Write("Ingrese el nuevo Nombre: ");
-                            nomN = Console.ReadLine();
+                            Console.WriteLine("Cliente encontrado !");
+                            Console.Write("Ingrese nuevo apellido: ");
+                            string apeN = Console.ReadLine();
+                            Console.Write("Ingrese nuevo nombre: ");
+                            string nomN = Console.ReadLine();
                             Console.Write("Ingrese nueva edad: ");
-                            edadN = int.Parse(Console.ReadLine());
-                            gestorClientes.ModificarCliente(apeV, nomV, new Cliente(apeN, nomN,edadN));
+                            int edadN = int.Parse(Console.ReadLine());
+                            gestorClientes.ModificarCliente(apeV, nomV, new Cliente(apeN, nomN, edadN));
                             Console.WriteLine("Cliente modificado correctamente");
                         }
                         else
@@ -96,14 +96,14 @@ namespace EjemploABM1.Presentacion
                         for (int i = 0; i < clientes.Count; i++)
                         {
                             var linea = clientes[i].Split(' ');
-                            Console.WriteLine("----------");
+                            Console.WriteLine("--------------------");
                             Console.Write("Apellido: ");
                             Console.WriteLine(linea[0]);
                             Console.Write("Nombre: ");
                             Console.WriteLine(linea[1]);
                             Console.Write("Edad: ");
                             Console.WriteLine(linea[2]);
-                            Console.WriteLine("----------");
+                            Console.WriteLine("--------------------");
                         }
                         Console.WriteLine("********************************");
                         Console.WriteLine("");
@@ -113,7 +113,7 @@ namespace EjemploABM1.Presentacion
                         string apeBuscar = Console.ReadLine();
                         Console.Write("Ingrese el Nombre: ");
                         string nomBuscar = Console.ReadLine();
-                        var clientesB = gestorClientes.MostrarClientes(apeBuscar,nomBuscar);
+                        var clientesB = gestorClientes.BuscarClientesPorNombre(apeBuscar, nomBuscar);
                         Console.WriteLine("");
                         Console.WriteLine("********************************");
                         for (int i = 0; i < clientesB.Count; i++)

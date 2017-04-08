@@ -21,5 +21,17 @@ namespace EjemploABM1.LogicaNegocio
         {
             return repo.MostrarProductos();
         }
+
+        public bool BorrarProducto(string nomB, string marcaB)
+        {
+            if (repo.BuscarProducto(nomB, marcaB).Count != 0)
+            {
+                repo.BorrarProducto(nomB, marcaB);
+                return true;
+            }
+            else return false;
+        }
+
+
     }
 }

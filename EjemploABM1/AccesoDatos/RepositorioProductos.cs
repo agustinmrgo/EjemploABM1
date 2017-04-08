@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using EjemploABM1.Entidades;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace EjemploABM1.AccesoDatos
 {
@@ -20,19 +17,51 @@ namespace EjemploABM1.AccesoDatos
             return com;
         }
 
-        public void AgregarProd(Producto producto)
+        public void AgregarProd (Producto producto)
         {
             var com = this.ObtenerComando();
-            com.CommandText = "INSERT INTO Producto (Nombre,Marca,Precio) VALUES (@Nombre, @Marca,@Precio)";
-            com.Parameters.AddWithValue("@Nombre", producto.NomP);
-            com.Parameters.AddWithValue("@Marca", producto.MarcaP);
-            com.Parameters.AddWithValue("@Precio", producto.PrecioP);
+            com.CommandText = "GuardarProducto";
+            com.Parameters.AddWithValue("Nombre", producto.NomP);
+            com.Parameters.AddWithValue("Marca", producto.MarcaP);
+            com.Parameters.AddWithValue("Precio", producto.PrecioP);
+            com.CommandType = CommandType.StoredProcedure;
             com.Connection.Open();
             com.ExecuteNonQuery();
             com.Connection.Close();
         }
 
-        public List<string> MostrarProductos()
+        public void BorrarProducto (string nomB, string marcaB)
+        {
+            var com = ObtenerComando();
+            com.CommandText = "BorrarProducto";
+            com.Parameters.AddWithValue("Nombre", nomB);
+            com.Parameters.AddWithValue("Marca", marcaB);
+            com.CommandType = CommandType.StoredProcedure;
+            com.Connection.Open();
+            com.ExecuteNonQuery();
+            com.Connection.Close();
+        }
+
+        public List<string> BuscarProducto (string nom,string marca)
+        {
+            var encontrados = new List<string>();
+            var com = ObtenerComando();
+            com.CommandText = "BuscarProducto";
+            com.Parameters.AddWithValue("Nombre", nom);
+            com.Parameters.AddWithValue("Marca", marca);
+            com.CommandType = CommandType.StoredProcedure;
+            com.Connection.Open();
+            var reader = com.ExecuteReader();
+            while (reader.Read())
+            {
+                var prod = reader.GetString(1) + " " + reader.GetString(2) + " " + reader.GetDecimal(3);
+                encontrados.Add(prod);
+            }
+            com.Connection.Close();
+            return encontrados;
+        }
+
+        public List<string> MostrarProductos ()
         {
             var productos = new List<string>();
             var com = ObtenerComando();

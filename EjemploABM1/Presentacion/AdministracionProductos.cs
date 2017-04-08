@@ -13,9 +13,9 @@ namespace EjemploABM1
             do
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("===================================");
-                Console.WriteLine("             MENU PRODUCTOS");
-                Console.WriteLine("===================================");
+                Console.WriteLine("================================");
+                Console.WriteLine("          MENU PRODUCTOS");
+                Console.WriteLine("================================");
                 Console.WriteLine("");
                 Console.WriteLine("1 - Agregar producto");
                 Console.WriteLine("2 - Borrar producto");
@@ -31,36 +31,30 @@ namespace EjemploABM1
                 switch (opcion)
                 {
                     case "1":
-                        string nomP;
-                        string marcaP;
-                        decimal precioP;
                         Console.WriteLine("");
                         Console.Write("Ingrese nombre: ");
-                        nomP = Console.ReadLine();
+                        string nomP = Console.ReadLine();
                         Console.Write("Ingrese marca: ");
-                        marcaP = Console.ReadLine();
+                        string marcaP = Console.ReadLine();
                         Console.Write("Ingrese precio: ");
-                        precioP = decimal.Parse(Console.ReadLine());
+                        decimal precioP = decimal.Parse(Console.ReadLine());
                         gestorProductos.AgregarProd(new Producto(nomP, marcaP, precioP));
                         Console.WriteLine("Cliente agregado correctamente");
                         Console.WriteLine("");
                         break;
-/*
                     case "2":
-                        String apeB;
-                        String nomB;
                         Console.WriteLine("");
-                        Console.Write("Ingrese el Apellido del Cliente que quiere borrar: ");
-                        apeB = Console.ReadLine();
-                        Console.Write("Ingrese el Nombre del Cliente que quiere borrar: ");
-                        nomB = Console.ReadLine();
-                        if (gestorClientes.BorrarCliente(apeB, nomB))
-                            Console.Write("Cliente borrado correctamente");
+                        Console.Write("Ingrese nombre del producto que quiere borrar: ");
+                        string nomB = Console.ReadLine();
+                        Console.Write("Ingrese marca del producto que quiere borrar: ");
+                        string marcaB = Console.ReadLine();
+                        if (gestorProductos.BorrarProducto(nomB, marcaB))
+                            Console.Write("Producto borrado correctamente");
                         else
-                            Console.Write("No se ha podido borrar el Cliente");
+                            Console.Write("No se pudo borrar el producto");
                         Console.WriteLine("");
                         break;
-
+/*
                     case "3":
                         String apeV;
                         String nomV;

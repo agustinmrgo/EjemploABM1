@@ -1,10 +1,7 @@
 ﻿using EjemploABM1.Entidades;
-using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 
 namespace EjemploABM1.AccesoDatos
 {
@@ -23,67 +20,57 @@ namespace EjemploABM1.AccesoDatos
         public void Guardar(Cliente c)
         {
             var com = ObtenerComando();
-            com.CommandText = "INSERT INTO Cliente (Apellido, Nombre,Edad) VALUES (@Apellido, @Nombre,@Edad)";
-            com.Parameters.AddWithValue("@Apellido", c.apellido);
-            com.Parameters.AddWithValue("@Nombre", c.nombre);
-            com.Parameters.AddWithValue("@Edad", c.edad);
+            com.CommandText = "GuardarCliente";
+            com.Parameters.AddWithValue("Apellido", c.apellido);
+            com.Parameters.AddWithValue("Nombre", c.nombre);
+            com.Parameters.AddWithValue("Edad", c.edad);
+            com.CommandType = CommandType.StoredProcedure;
             com.Connection.Open();
             com.ExecuteNonQuery();
             com.Connection.Close();
-            /* Usar SqlCommand().Parameters.AddWithValue("@Parametro", Valor) para agregar 
-             * sin que suceda una inyeccion de codigo SQL */
         }
 
-        //public void Borrar(string nombre, string apellido)
-        //{
-        //    var com = ObtenerComando();
-        //    com.CommandText = "DELETE FROM Cliente WHERE apellido=@Apellido AND Nombre=@Nombre";
-        //    com.Parameters.AddWithValue("Apellido", apellido);
-        //    com.Parameters.AddWithValue("Nombre", nombre);
-        //    com.Connection.Open();
-        //    com.ExecuteNonQuery();
-        //    com.Connection.Close();
-
-        //}
-
-        public void Borrar(string nombre, string apellido)
+        public void Borrar(string apellido, string nombre)
         {
             var com = ObtenerComando();
-            com.CommandText = "Eliminar @Apellido, @Nombre";
-            com.Parameters.AddWithValue("@Apellido", apellido);
-            com.Parameters.AddWithValue("@Nombre", nombre);
+            com.CommandText = "BorrarCliente";
+            com.Parameters.AddWithValue("Apellido", apellido);
+            com.Parameters.AddWithValue("Nombre", nombre);
+            com.CommandType = CommandType.StoredProcedure;
             com.Connection.Open();
             com.ExecuteNonQuery();
             com.Connection.Close();
         }
-
 
         public List<string> Buscar(string Apellido, string Nombre)
         {
-            var listaClientes = new List<string>();
+            var encontrados = new List<string>();
             var com = ObtenerComando();
-            com.CommandText = "SELECT * FROM Cliente WHERE Apellido = @Apellido AND Nombre = @Nombre";
-            com.Parameters.AddWithValue("@Apellido", Apellido);
-            com.Parameters.AddWithValue("@Nombre", Nombre);
+            com.CommandText = "BuscarCliente";
+            com.Parameters.AddWithValue("Apellido", Apellido);
+            com.Parameters.AddWithValue("Nombre", Nombre);
+            com.CommandType = CommandType.StoredProcedure;
             com.Connection.Open();
             var reader = com.ExecuteReader();
             while (reader.Read())
             {
-                var cliente = reader.GetInt32(0)+" "+reader.GetString(1) +" "+ reader.GetString(2) + " " + reader.GetInt32(3);
-                listaClientes.Add(cliente);
+                var cliente = reader.GetString(1) +" "+ reader.GetString(2) + " " + reader.GetInt32(3);
+                encontrados.Add(cliente);
             }
             com.Connection.Close();
-            return listaClientes;
+            return encontrados;
         }
 
-        public void Modificar(Cliente viejo,Cliente nuevo)
+        public void Modificar(Cliente viejo, Cliente nuevo)
         {
             var com = ObtenerComando();
-            com.CommandText = "UPDATE Cliente SET Apellido=@ApellidoN, Nombre=@NombreN WHERE Nombre=@NombreV AND Apellido=@ApellidoV";
-            com.Parameters.AddWithValue("@ApellidoN", nuevo.apellido);
-            com.Parameters.AddWithValue("@NombreN", nuevo.nombre);
-            com.Parameters.AddWithValue("@NombreV", viejo.nombre);
-            com.Parameters.AddWithValue("@ApellidoV", viejo.apellido);
+            com.CommandText = "ModificarCliente";
+            com.Parameters.AddWithValue("ApellidoN", nuevo.apellido);
+            com.Parameters.AddWithValue("NombreN", nuevo.nombre);
+            com.Parameters.AddWithValue("EdadN", nuevo.edad);
+            com.Parameters.AddWithValue("NombreV", viejo.nombre);
+            com.Parameters.AddWithValue("ApellidoV", viejo.apellido);
+            com.CommandType = CommandType.StoredProcedure;
             com.Connection.Open();
             com.ExecuteNonQuery();
             com.Connection.Close();
@@ -105,14 +92,14 @@ namespace EjemploABM1.AccesoDatos
             return clientes;
         }
 
-        public List<string> MostrarClientes(string apellido,string nombre)
+        public List<string> BuscarClientesPorNombre (string apellido,string nombre)
         {
             var com = ObtenerComando();
             var clientes = new List<string>();
-            com.CommandText = "ConsultaClientes 0";
-            com.Parameters.AddWithValue("@Apellido", apellido);
-            com.Parameters.AddWithValue("@Nombre", nombre);
-            com.CommandType = System.Data.CommandType.StoredProcedure; //puedo hacer use de System.Data
+            com.CommandText = "BuscarClientesPorNom";
+            com.Parameters.AddWithValue("Apellido", apellido);
+            com.Parameters.AddWithValue("Nombre", nombre);
+            com.CommandType = CommandType.StoredProcedure; //puedo hacer use de System.Data
             com.Connection.Open();
             var reader = com.ExecuteReader();
             while (reader.Read())
