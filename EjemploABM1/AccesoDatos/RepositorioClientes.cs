@@ -51,6 +51,7 @@ namespace EjemploABM1.AccesoDatos
             com.Parameters.AddWithValue("Nombre", Nombre);
             com.CommandType = CommandType.StoredProcedure;
             com.Connection.Open();
+
             var reader = com.ExecuteReader();
             while (reader.Read())
             {
