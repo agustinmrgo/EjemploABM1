@@ -13,6 +13,7 @@ namespace EjemploABM1.Presentacion
         }
 
         public bool BorrarCliente(string Apellido, string Nombre)
+        public bool BorrarCliente(string Nombre, string Apellido)
         {
             int encontrados = repo.Buscar(Apellido, Nombre).Count;
             if (encontrados != 0)

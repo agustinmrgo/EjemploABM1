@@ -46,6 +46,7 @@ namespace EjemploABM1.Presentacion
                         Console.WriteLine("Cliente agregado correctamente");
                         Console.WriteLine("");
                         break;
+
                     case "2":
                         String apeB;
                         String nomB;
@@ -57,11 +58,8 @@ namespace EjemploABM1.Presentacion
                         if (gestorClientes.BorrarCliente(apeB, nomB))
                         {
                             Console.Write("Cliente borrado correctamente");
-                        }
                         else
-                        {
                             Console.Write("No se ha podido borrar el Cliente");
-                        }
                         Console.WriteLine("");
                         break;
 
