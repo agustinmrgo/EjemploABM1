@@ -48,6 +48,7 @@ namespace EjemploABM1.AccesoDatos
             var com = ObtenerComando();
             com.CommandText = "BuscarCliente";
             com.Parameters.AddWithValue("Apellido", Apellido);
+
             com.Parameters.AddWithValue("Nombre", Nombre);
 
             com.CommandType = CommandType.StoredProcedure;
