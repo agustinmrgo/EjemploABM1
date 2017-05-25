@@ -10,6 +10,7 @@ namespace EjemploABM1.AccesoDatos
         private SqlCommand ObtenerComando()
         {
             SqlConnection conn = new SqlConnection();
+
             //conn.ConnectionString = @"Server=AGUSTINDELL\SQLEXPRESS;Database=EjemploABM;Trusted_Connection=true;";
             conn.ConnectionString = @"Server=AGUSTIN-PC\SQLEXPRESS;Database=EjemploABM;Trusted_Connection=true;";
 
