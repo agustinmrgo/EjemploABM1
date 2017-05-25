@@ -47,7 +47,9 @@ namespace EjemploABM1.AccesoDatos
             var encontrados = new List<string>();
 
             var com = ObtenerComando();
+
             com.CommandText = "BuscarCliente";
+
             com.Parameters.AddWithValue("Apellido", Apellido);
 
             com.Parameters.AddWithValue("Nombre", Nombre);
@@ -63,6 +65,7 @@ namespace EjemploABM1.AccesoDatos
                 var cliente = reader.GetString(1) +" "+ reader.GetString(2) + " " + reader.GetInt32(3);
                 encontrados.Add(cliente);
             }
+
             com.Connection.Close();
             return encontrados;
         }
