@@ -21,6 +21,7 @@ namespace EjemploABM1
                 Console.WriteLine("1. Administrar clientes");
                 Console.WriteLine("2. Administrar productos");
                 Console.WriteLine("3. Salir");
+
                 Console.Write("Ingrese la opción: ");
                 opcion = Console.ReadLine();
                 Console.WriteLine("");
