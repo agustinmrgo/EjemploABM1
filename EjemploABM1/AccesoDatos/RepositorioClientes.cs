@@ -46,7 +46,9 @@ namespace EjemploABM1.AccesoDatos
         {
             var encontrados = new List<string>();
             var com = ObtenerComando();
+
             com.CommandText = "BuscarCliente";
+
             com.Parameters.AddWithValue("Apellido", Apellido);
 
             com.Parameters.AddWithValue("Nombre", Nombre);
