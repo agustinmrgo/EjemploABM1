@@ -19,8 +19,11 @@ namespace EjemploABM1
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\n##############\nElija un menu:\n##############\n");
                 Console.WriteLine("1. Administrar clientes");
+
                 Console.WriteLine("2. Administrar productos");
+
                 Console.WriteLine("3. Salir");
+
                 Console.Write("Ingrese la opción: ");
                 opcion = Console.ReadLine();
                 Console.WriteLine("");
