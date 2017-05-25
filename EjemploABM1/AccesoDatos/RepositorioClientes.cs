@@ -64,6 +64,7 @@ namespace EjemploABM1.AccesoDatos
                 var cliente = reader.GetString(1) +" "+ reader.GetString(2) + " " + reader.GetInt32(3);
                 encontrados.Add(cliente);
             }
+
             com.Connection.Close();
             return encontrados;
         }
